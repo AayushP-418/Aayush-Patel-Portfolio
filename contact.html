@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact • Aayush Patel</title>
+    <meta name="description" content="Contact Aayush Patel — Email and professional links.">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+      .contact-card { max-width: 720px; margin: 16px 0; }
+      form.mailto { display: grid; gap: 10px; }
+      .field { display: grid; gap: 6px; }
+      input, textarea { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: rgba(17,23,49,0.6); color: var(--text); }
+      textarea { min-height: 140px; resize: vertical; }
+      label { color: var(--muted); font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="index.html" aria-label="Home"></a>
+        <nav id="primaryNav" class="nav-links" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="experience.html">Experience</a>
+          <a href="research.html">Research</a>
+          <a href="projects.html">Projects</a>
+          <a class="active" href="contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-icon">🌙</span>
+          </button>
+          <a class="btn" href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/AayushP-418" target="_blank" rel="noopener">GitHub</a>
+          <span class="btn phone-btn">+1 770 862 5673</span>
+          <a class="btn primary" href="mailto:apatel3088@gatech.edu">Email</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section>
+        <div class="sub">Contact</div>
+        <h2>Get In Touch!</h2>
+        <div class="item contact-card">
+          <p>I'm open to internships, research collaborations, and impactful projects. The fastest way to reach me is by email.</p>
+          <p><strong>Email:</strong> <a href="mailto:apatel3088@gatech.edu">apatel3088@gatech.edu</a></p>
+          <p><strong>Phone:</strong> <span class="phone-display">+1 770 862 5673</span></p>
+          <div class="chips">
+            <a class="chip" href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="chip" href="https://github.com/AayushP-418" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <div class="card contact-card">
+          <h3>Send a quick message</h3>
+          <form class="mailto" onsubmit="return composeMail(event)">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" placeholder="Opportunity at..." required>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Hi Aayush, ..." required></textarea>
+            </div>
+            <button class="btn primary" type="submit">Open in Email</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="muted">© <span id="year"></span> Aayush Patel</div>
+        <div class="socials">
+          <a href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/AayushP-418" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:apatel3088@gatech.edu">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+      function composeMail(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const body = encodeURIComponent(`From: ${name}\n\n${message}`);
+        const mailto = `mailto:apatel3088@gatech.edu?subject=${encodeURIComponent(subject)}&body=${body}`;
+        window.location.href = mailto;
+        return false;
+      }
+    </script>
+  </body>
+  </html>
+
+

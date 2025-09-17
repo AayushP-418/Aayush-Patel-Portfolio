@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resume • Aayush Patel</title>
+    <meta name="description" content="Resume of Aayush Patel">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+      .pdf-wrap { height: calc(100vh - 140px); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: #0f1430; }
+      .pdf-embed { width: 100%; height: 100%; border: 0; }
+      .pdf-fallback { padding: 16px; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="index.html" aria-label="Aayush Patel home">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Aayush Patel</span>
+        </a>
+        <button class="btn menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+        <nav id="primaryNav" class="nav-links" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="experience.html">Experience</a>
+          <a href="research.html">Research</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn" href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/AayushP-418" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn primary" href="mailto:apatel3088@gatech.edu">Email</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section>
+        <div class="sub">Resume</div>
+        <h2>Embedded PDF</h2>
+        <div class="pdf-wrap card">
+          <object class="pdf-embed" data="assets/resume/Aayush_Patel_Resume.pdf" type="application/pdf">
+            <div class="pdf-fallback">
+              <p>Your browser doesn't support inline PDFs. You can download the file instead:</p>
+              <a class="btn primary" href="assets/resume/Aayush_Patel_Resume.pdf" download>Download Resume (PDF)</a>
+            </div>
+          </object>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="muted">© <span id="year"></span> Aayush Patel</div>
+        <div class="socials">
+          <a href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/AayushP-418" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:apatel3088@gatech.edu">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+  </html>
+
+
