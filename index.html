@@ -12,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
 </head>
 <body>
 
@@ -55,21 +54,33 @@
       <canvas id="hero-canvas" class="hero-canvas"></canvas>
       <div class="container">
         <div class="kicker">Computer Science @ Georgia Tech · Class of 2028</div>
-        <h1 id="typing-title"></h1>
-        <div class="subhead">
-          Specializing in <span class="accent-text">Intelligence</span> &amp; <span class="accent-text">Systems Architecture</span> · Minor in <span class="accent-text">FinTech</span>
+        <div class="terminal-block">
+          <div class="term-titlebar">
+            <span class="term-dot term-dot-red"></span>
+            <span class="term-dot term-dot-yellow"></span>
+            <span class="term-dot term-dot-green"></span>
+            <span class="term-title">aayush@portfolio ~ </span>
+          </div>
+          <div class="term-body">
+            <div id="term-lines"></div>
+          </div>
         </div>
-        <p class="lead">
-          I build production AI systems — RAG pipelines, LLM integrations, and end-to-end ML — and research evolutionary AutoML at Georgia Tech's EMADE Lab. Currently directing 11 AI/ML teams and teaching 200+ students OOP and systems design.
-        </p>
-        <div class="hero-ctas">
-          <a class="btn primary" href="#projects">View My Work</a>
-          <a class="btn" href="assets/resume/Aayush_Patel_Resume.pdf" download>Download Resume</a>
-          <a class="btn" href="#contact">Get in Touch</a>
-        </div>
-        <div class="status-bar">
-          <span class="status-dot"></span>
-          <span id="status-text"></span>
+        <div class="hero-reveal">
+          <div class="subhead">
+            Specializing in <span class="accent-text">Intelligence</span> &amp; <span class="accent-text">Systems Architecture</span> · Minor in <span class="accent-text">FinTech</span>
+          </div>
+          <p class="lead">
+            I build production AI systems — RAG pipelines, LLM integrations, and end-to-end ML — and research evolutionary AutoML at Georgia Tech's EMADE Lab. Currently directing 11 AI/ML teams and teaching 200+ students OOP and systems design.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="#projects">View My Work</a>
+            <a class="btn" href="assets/resume/Aayush_Patel_Resume.pdf" download>Download Resume</a>
+            <a class="btn" href="#contact">Get in Touch</a>
+          </div>
+          <div class="status-bar">
+            <span class="status-dot"></span>
+            <span id="status-text"></span>
+          </div>
         </div>
       </div>
     </section>
