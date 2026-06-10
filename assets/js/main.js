@@ -31,19 +31,89 @@
       });
     }
 
-    /* ── Typed.js hero title ───────────────── */
-    var titleEl = document.getElementById('typing-title');
-    if (titleEl && typeof Typed !== 'undefined') {
-      setTimeout(function () {
-        new Typed('#typing-title', {
-          strings: ["Hi, I'm Aayush Patel."],
-          typeSpeed: 65,
-          showCursor: true,
-          cursorChar: '|',
-          autoInsertCss: true
+    /* ── Terminal hero boot sequence ──────── */
+    (function initTerminal() {
+      var termLines  = document.getElementById('term-lines');
+      var heroReveal = document.querySelector('.hero-reveal');
+      if (!termLines) return;
+
+      var sequence = [
+        {
+          cmd: 'whoami',
+          output: ['Aayush Patel — Applied AI Engineer @ Georgia Tech']
+        },
+        {
+          cmd: 'cat current_focus.txt',
+          output: [
+            'Building production RAG systems. Teaching 200+ students.',
+            'Leading 11 ML teams. Researching evolutionary AutoML.'
+          ]
+        },
+        {
+          cmd: 'ls projects/',
+          output: ['research-paper-rag/  vitalis/  terratrends/  flight-delay/']
+        }
+      ];
+
+      var TYPE_MS  = 38;   // ms per character when typing commands
+      var PRE_OUT  = 130;  // pause before output appears
+      var BETWEEN  = 500;  // pause between command blocks
+      var DONE_GAP = 350;  // pause before hero-reveal fades in
+
+      function el(tag, cls) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        return e;
+      }
+
+      function type(target, text, speed, done) {
+        var i = 0;
+        (function step() {
+          if (i < text.length) { target.textContent += text[i++]; setTimeout(step, speed); }
+          else if (done) done();
+        })();
+      }
+
+      function run(idx) {
+        if (idx >= sequence.length) {
+          setTimeout(function () {
+            var idle = el('div', 'term-line');
+            var pr   = el('span', 'term-prompt'); pr.textContent = '> ';
+            var cur  = el('span', 'term-cursor-blink'); cur.textContent = '█';
+            idle.appendChild(pr); idle.appendChild(cur);
+            termLines.appendChild(idle);
+            if (heroReveal) {
+              setTimeout(function () { heroReveal.classList.add('visible'); }, DONE_GAP);
+            }
+          }, BETWEEN);
+          return;
+        }
+
+        var entry = sequence[idx];
+        var row   = el('div', 'term-line');
+        var pr    = el('span', 'term-prompt'); pr.textContent = '> ';
+        var cmd   = el('span', 'term-cmd');
+        var cur   = el('span', 'term-cursor-typing'); cur.textContent = '█';
+        row.appendChild(pr); row.appendChild(cmd); row.appendChild(cur);
+        termLines.appendChild(row);
+
+        type(cmd, entry.cmd, TYPE_MS, function () {
+          cur.remove();
+          setTimeout(function () {
+            entry.output.forEach(function (line) {
+              var out = el('div', 'term-line term-output');
+              out.textContent = line;
+              termLines.appendChild(out);
+            });
+            var gap = el('div', 'term-line'); gap.textContent = ' ';
+            termLines.appendChild(gap);
+            setTimeout(function () { run(idx + 1); }, BETWEEN);
+          }, PRE_OUT);
         });
-      }, 300);
-    }
+      }
+
+      setTimeout(function () { run(0); }, 500);
+    })();
 
     /* ── Status bar rotation ───────────────── */
     var statuses = [
