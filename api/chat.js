@@ -1,4 +1,4 @@
-const Anthropic = require('@anthropic-ai/sdk');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const SYSTEM_PROMPT = `You are a helpful portfolio assistant for Aayush Patel. Answer questions about his background, skills, projects, and experience accurately and concisely. Speak naturally about Aayush in third person.
 
@@ -59,28 +59,26 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid message' });
   }
 
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!process.env.GEMINI_API_KEY) {
     return res.status(500).json({ error: 'API key not configured' });
   }
 
   try {
-    const client = new Anthropic();
-
-    const cleanHistory = (Array.isArray(history) ? history : [])
-      .filter(m => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
-      .slice(-6);
-
-    const response = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 512,
-      system: SYSTEM_PROMPT,
-      messages: [
-        ...cleanHistory,
-        { role: 'user', content: message.trim().slice(0, 500) }
-      ]
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-1.5-flash',
+      systemInstruction: SYSTEM_PROMPT
     });
 
-    const reply = response.content[0]?.text || 'Sorry, I could not generate a response.';
+    // Gemini uses 'model' instead of 'assistant' for the assistant role
+    const cleanHistory = (Array.isArray(history) ? history : [])
+      .filter(m => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+      .slice(-6)
+      .map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
+
+    const chat = model.startChat({ history: cleanHistory });
+    const result = await chat.sendMessage(message.trim().slice(0, 500));
+    const reply = result.response.text() || 'Sorry, I could not generate a response.';
     return res.status(200).json({ reply });
 
   } catch (err) {
