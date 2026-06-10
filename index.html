@@ -144,10 +144,19 @@
           </div>
         </div>
 
-        <!-- Grid -->
-        <div class="projects-grid">
+        <!-- Filter tabs -->
+        <div class="filter-tabs" id="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All</button>
+          <button class="filter-tab" data-filter="ai-ml">AI / ML Systems</button>
+          <button class="filter-tab" data-filter="research">Research</button>
+          <button class="filter-tab" data-filter="fullstack">Full-Stack</button>
+          <button class="filter-tab" data-filter="data-eng">Data Engineering</button>
+        </div>
 
-          <article class="project-card reveal">
+        <!-- Grid -->
+        <div class="projects-grid" id="projects-grid">
+
+          <article class="project-card reveal" data-cat="ai-ml">
             <div class="pc-top">
               <h3>Vitalis — AI Health Assistant</h3>
               <a class="btn btn-sm" href="https://github.com/AayushP-418/Vitalis-Med-Assistant" target="_blank" rel="noopener">Code</a>
@@ -159,7 +168,7 @@
             </div>
           </article>
 
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-cat="data-eng">
             <div class="pc-top">
               <h3>TerraTrends — Economic Forecasting</h3>
               <a class="btn btn-sm" href="https://github.com/AayushP-418/TerraTrends" target="_blank" rel="noopener">Code</a>
@@ -171,7 +180,7 @@
             </div>
           </article>
 
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-cat="ai-ml data-eng research">
             <div class="pc-top">
               <h3>Flight Delay Prediction</h3>
               <a class="btn btn-sm" href="https://github.com/gt-big-data/flight-delay-prediction" target="_blank" rel="noopener">Code</a>
@@ -183,7 +192,7 @@
             </div>
           </article>
 
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-cat="ai-ml research">
             <div class="pc-top">
               <h3>ThirdEye — Assistive Vision System</h3>
               <a class="btn btn-sm" href="https://github.com/Hackalytics-2025/ThirdEye" target="_blank" rel="noopener">Code</a>
@@ -195,7 +204,7 @@
             </div>
           </article>
 
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-cat="fullstack">
             <div class="pc-top">
               <h3>Technical Interview Platform</h3>
               <span class="wip-badge">In Progress</span>
@@ -206,7 +215,7 @@
             </div>
           </article>
 
-          <article class="project-card reveal">
+          <article class="project-card reveal" data-cat="fullstack">
             <div class="pc-top">
               <h3>Job Search Portal</h3>
               <a class="btn btn-sm" href="https://github.com/AayushP-418/Job-Search-Portal" target="_blank" rel="noopener">Code</a>

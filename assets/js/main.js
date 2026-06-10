@@ -204,6 +204,51 @@
       });
     }
 
+    /* ── Projects filter tabs ─────────────── */
+    (function initFilter() {
+      var tabs  = Array.from(document.querySelectorAll('.filter-tab'));
+      var cards = Array.from(document.querySelectorAll('.project-card[data-cat]'));
+      if (!tabs.length || !cards.length) return;
+
+      var FADE_MS = 250;
+      var current = 'all';
+      var pending = [];
+
+      function applyFilter(cat) {
+        current = cat;
+        pending.forEach(clearTimeout);
+        pending = [];
+
+        cards.forEach(function (card) {
+          var cats = card.dataset.cat.split(' ');
+          var show = cat === 'all' || cats.indexOf(cat) !== -1;
+          var hidden = card.style.display === 'none';
+
+          card.classList.remove('filter-out'); // cancel any in-progress fade
+
+          if (show && hidden) {
+            card.style.display = '';
+            card.offsetHeight; // force reflow so fade-in transition plays
+          } else if (!show && !hidden) {
+            card.classList.add('filter-out');
+            pending.push(setTimeout(function () {
+              if (card.classList.contains('filter-out')) card.style.display = 'none';
+            }, FADE_MS));
+          }
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var cat = tab.dataset.filter;
+          if (cat === current) return;
+          tabs.forEach(function (t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+          applyFilter(cat);
+        });
+      });
+    })();
+
     /* ── RAG pipeline walkthrough ─────────── */
     (function initWalkthrough() {
       var diagram  = document.getElementById('arch-diagram');
