@@ -1,4 +1,4 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const Groq = require('groq-sdk');
 
 const SYSTEM_PROMPT = `You are a helpful portfolio assistant for Aayush Patel. Answer questions about his background, skills, projects, and experience accurately and concisely. Speak naturally about Aayush in third person.
 
@@ -59,26 +59,28 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid message' });
   }
 
-  if (!process.env.GEMINI_API_KEY) {
+  if (!process.env.GROQ_API_KEY) {
     return res.status(500).json({ error: 'API key not configured' });
   }
 
   try {
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash-lite',
-      systemInstruction: SYSTEM_PROMPT
-    });
+    const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-    // Gemini uses 'model' instead of 'assistant' for the assistant role
     const cleanHistory = (Array.isArray(history) ? history : [])
       .filter(m => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
-      .slice(-6)
-      .map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
+      .slice(-6);
 
-    const chat = model.startChat({ history: cleanHistory });
-    const result = await chat.sendMessage(message.trim().slice(0, 500));
-    const reply = result.response.text() || 'Sorry, I could not generate a response.';
+    const response = await client.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      max_tokens: 512,
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        ...cleanHistory,
+        { role: 'user', content: message.trim().slice(0, 500) }
+      ]
+    });
+
+    const reply = response.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
     return res.status(200).json({ reply });
 
   } catch (err) {
