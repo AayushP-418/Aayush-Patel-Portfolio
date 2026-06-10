@@ -54,6 +54,14 @@
     document.body.appendChild(panel);
   }
 
+  /* ── Safe markdown → HTML (bold + line breaks only) ── */
+  function toHTML(text) {
+    return text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+  }
+
   /* ── Render messages ────────────────────── */
   function renderMessages() {
     var container = document.getElementById('chat-messages');
@@ -69,7 +77,7 @@
       state.messages.forEach(function (msg) {
         var bubble = document.createElement('div');
         bubble.className = 'chat-bubble chat-bubble-' + msg.role;
-        bubble.textContent = msg.content;
+        bubble.innerHTML = toHTML(msg.content);
         container.appendChild(bubble);
       });
     }
