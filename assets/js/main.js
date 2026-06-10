@@ -56,24 +56,24 @@
     if (statusEl) {
       var si = 0;
       statusEl.textContent = statuses[0];
+      statusEl.style.transition = 'opacity 0.35s ease';
       setInterval(function () {
         statusEl.style.opacity = '0';
         setTimeout(function () {
           si = (si + 1) % statuses.length;
           statusEl.textContent = statuses[si];
           statusEl.style.opacity = '1';
-        }, 350);
+        }, 360);
       }, 3500);
-      statusEl.style.transition = 'opacity 0.35s ease';
     }
 
-    /* ── Mobile menu toggle ────────────────── */
+    /* ── Mobile menu ───────────────────────── */
     var menuToggle = document.getElementById('menuToggle');
     var primaryNav  = document.getElementById('primaryNav');
     if (menuToggle && primaryNav) {
       menuToggle.addEventListener('click', function () {
-        var isOpen = primaryNav.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        var open = primaryNav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
       });
       primaryNav.addEventListener('click', function (e) {
         if (e.target && e.target.tagName === 'A') {
@@ -89,43 +89,33 @@
     navLinks.forEach(function (a) {
       var id  = a.getAttribute('href').replace('#', '');
       var sec = document.getElementById(id);
-      if (sec) sections.push({ id: id, el: sec, link: a });
+      if (sec) sections.push({ el: sec, link: a });
     });
 
     function updateActive() {
       var scrollY = window.scrollY || window.pageYOffset;
-      var winH    = window.innerHeight;
       var active  = sections[0];
-
       sections.forEach(function (s) {
-        var top = s.el.getBoundingClientRect().top + scrollY;
-        if (scrollY + winH * 0.35 >= top) active = s;
+        if (scrollY + window.innerHeight * 0.32 >= s.el.getBoundingClientRect().top + scrollY)
+          active = s;
       });
-
       sections.forEach(function (s) {
         s.link.classList.toggle('active', s === active);
       });
     }
-
     window.addEventListener('scroll', updateActive, { passive: true });
     updateActive();
 
     /* ── Scroll reveal ─────────────────────── */
     var revealEls = document.querySelectorAll('.reveal');
-
     if ('IntersectionObserver' in window) {
-      var revealObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            revealObs.unobserve(entry.target);
-          }
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-      revealEls.forEach(function (el) { revealObs.observe(el); });
+      revealEls.forEach(function (el) { obs.observe(el); });
     } else {
-      /* Fallback for old browsers */
       revealEls.forEach(function (el) { el.classList.add('revealed'); });
     }
 
@@ -137,13 +127,158 @@
         var name    = document.getElementById('c-name').value.trim();
         var subject = document.getElementById('c-subject').value.trim();
         var message = document.getElementById('c-message').value.trim();
-        var body    = encodeURIComponent('From: ' + name + '\n\n' + message);
         window.location.href =
           'mailto:apatel3088@gatech.edu' +
           '?subject=' + encodeURIComponent(subject) +
-          '&body=' + body;
+          '&body='    + encodeURIComponent('From: ' + name + '\n\n' + message);
       });
     }
 
-  });
+    /* ── Hero canvas particle graph ────────── */
+    initHeroCanvas();
+
+  }); // ready
+
+  /* ───────────────────────────────────────────
+     Particle / node graph for hero background
+  ─────────────────────────────────────────── */
+  function initHeroCanvas() {
+    var canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+
+    // Skip on mobile or reduced-motion
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var ctx    = canvas.getContext('2d');
+    var hero   = canvas.parentElement;
+    var nodes  = [];
+    var animId = null;
+    var mouse  = { x: -9999, y: -9999 };
+
+    /* Size canvas to hero dimensions */
+    function resize() {
+      canvas.width  = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+      buildNodes();
+    }
+
+    function buildNodes() {
+      var count = Math.min(50, Math.floor((canvas.width * canvas.height) / 16000));
+      nodes = [];
+      for (var i = 0; i < count; i++) {
+        nodes.push({
+          x:  Math.random() * canvas.width,
+          y:  Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.38,
+          vy: (Math.random() - 0.5) * 0.38,
+          r:  Math.random() * 1.8 + 1.2
+        });
+      }
+    }
+
+    function isDark() {
+      return document.documentElement.getAttribute('data-theme') !== 'light';
+    }
+
+    var EDGE_DIST = 160;
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      var dark      = isDark();
+      var nodeRGB   = dark ? '129,140,248' : '99,102,241';   /* indigo */
+      var edgeRGB   = dark ? '34,211,238'  : '8,145,178';    /* cyan   */
+      var nodeAlpha = dark ? 0.55 : 0.40;
+      var edgeMax   = dark ? 0.20 : 0.13;
+
+      /* Edges */
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var d  = Math.sqrt(dx * dx + dy * dy);
+          if (d < EDGE_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = 'rgba(' + edgeRGB + ',' + ((1 - d / EDGE_DIST) * edgeMax) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      /* Nodes */
+      for (var k = 0; k < nodes.length; k++) {
+        ctx.beginPath();
+        ctx.arc(nodes[k].x, nodes[k].y, nodes[k].r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + nodeRGB + ',' + nodeAlpha + ')';
+        ctx.fill();
+      }
+    }
+
+    function update() {
+      for (var i = 0; i < nodes.length; i++) {
+        var n  = nodes[i];
+        var dx = mouse.x - n.x;
+        var dy = mouse.y - n.y;
+        var d  = Math.sqrt(dx * dx + dy * dy);
+
+        /* Gentle attraction toward cursor */
+        if (d < 220 && d > 0) {
+          n.vx += (dx / d) * 0.014;
+          n.vy += (dy / d) * 0.014;
+        }
+
+        n.x += n.vx;
+        n.y += n.vy;
+
+        /* Soft wall bounce */
+        if (n.x < 0)             { n.x = 0;             n.vx =  Math.abs(n.vx); }
+        if (n.x > canvas.width)  { n.x = canvas.width;  n.vx = -Math.abs(n.vx); }
+        if (n.y < 0)             { n.y = 0;             n.vy =  Math.abs(n.vy); }
+        if (n.y > canvas.height) { n.y = canvas.height; n.vy = -Math.abs(n.vy); }
+
+        /* Speed cap */
+        var spd = Math.sqrt(n.vx * n.vx + n.vy * n.vy);
+        if (spd > 1.4) { n.vx = (n.vx / spd) * 1.4; n.vy = (n.vy / spd) * 1.4; }
+      }
+    }
+
+    function loop() {
+      if (!document.hidden) { update(); draw(); }
+      animId = requestAnimationFrame(loop);
+    }
+
+    /* Mouse tracking on hero section (canvas is pointer-events:none) */
+    hero.addEventListener('mousemove', function (e) {
+      var rect = hero.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    hero.addEventListener('mouseleave', function () {
+      mouse.x = -9999; mouse.y = -9999;
+    });
+
+    /* Resize via ResizeObserver */
+    if (window.ResizeObserver) {
+      new ResizeObserver(resize).observe(hero);
+    } else {
+      window.addEventListener('resize', resize);
+    }
+
+    resize();
+    loop();
+
+    /* Fade canvas in after first render */
+    setTimeout(function () { canvas.classList.add('active'); }, 100);
+
+    /* Pause when tab hidden */
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) cancelAnimationFrame(animId);
+      else loop();
+    });
+  }
+
 })();
