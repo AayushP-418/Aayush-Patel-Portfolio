@@ -32,7 +32,7 @@
           '<div class="chat-avatar">AP</div>' +
           '<div>' +
             '<div class="chat-header-title">Ask Aayush\'s Portfolio</div>' +
-            '<div class="chat-header-sub">Powered by Gemini</div>' +
+            '<div class="chat-header-sub">Powered by Llama 3.3</div>' +
           '</div>' +
         '</div>' +
         '<button class="chat-close" id="chat-close" aria-label="Close">&#10005;</button>' +
