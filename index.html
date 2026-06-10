@@ -1,141 +1,441 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aayush Patel • Portfolio</title>
-    <meta name="description" content="Aayush Patel — Computer Science @ Georgia Tech. Data, ML, full‑stack projects, research, and experience.">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav">
-        <a class="brand" href="index.html" aria-label="Home"></a>
-        <nav id="primaryNav" class="nav-links" aria-label="Primary">
-          <a class="active" href="index.html">Home</a>
-          <a href="experience.html">Experience</a>
-          <a href="research.html">Research</a>
-          <a href="projects.html">Projects</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-        <div class="nav-actions">
-          <button class="btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <span class="theme-icon">🌙</span>
-          </button>
-          <a class="btn" href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/AayushP-418" target="_blank" rel="noopener">GitHub</a>
-          <span class="btn phone-btn">+1 770 862 5673</span>
-          <a class="btn primary" href="mailto:apatel3088@gatech.edu">Email</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aayush Patel — Applied AI Engineer</title>
+  <meta name="description" content="Aayush Patel — Applied AI engineer at Georgia Tech. Production RAG systems, evolutionary AutoML research, ML at scale.">
+  <meta property="og:title" content="Aayush Patel — Applied AI Engineer">
+  <meta property="og:description" content="Production RAG systems, evolutionary AutoML research, ML at scale. Georgia Tech CS '28.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <div class="logo"><span>AP</span></div>
+        <span class="brand-name">Aayush Patel</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="primaryNav" class="nav-links" aria-label="Primary">
+        <a class="active" href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#research">Research</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <a class="btn icon-btn" href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="btn icon-btn" href="https://github.com/AayushP-418" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a class="btn primary" href="assets/resume/Aayush_Patel_Resume.pdf" download>Resume</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="kicker">Computer Science @ Georgia Tech · Class of 2028</div>
+        <h1 id="typing-title"></h1>
+        <div class="subhead">
+          Specializing in <span class="accent-text">Intelligence</span> &amp; <span class="accent-text">Systems Architecture</span> · Minor in <span class="accent-text">FinTech</span>
+        </div>
+        <p class="lead">
+          I build production AI systems — RAG pipelines, LLM integrations, and end-to-end ML — and research evolutionary AutoML at Georgia Tech's EMADE Lab. Currently directing 11 AI/ML teams and teaching 200+ students OOP and systems design.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#projects">View My Work</a>
+          <a class="btn" href="assets/resume/Aayush_Patel_Resume.pdf" download>Download Resume</a>
+          <a class="btn" href="#contact">Get in Touch</a>
+        </div>
+        <div class="status-bar">
+          <span class="status-dot"></span>
+          <span id="status-text"></span>
         </div>
       </div>
-    </header>
+    </section>
 
-    <main class="container">
-      <section class="hero">
-        <div class="kicker">Computer Science @ Georgia Tech • Junior</div>
-        <h1 id="typing-title"></h1>
-        <div class="subhead">Specializing in <span class="accent-text">Intelligence</span> and <span class="accent-text">Systems Architecture</span> Minoring in <span class="accent-text">FinTech</span></div>
-        <hr class="section-divider">
-        <p class="lead">I'm Aayush Patel, a Computer Science student at Georgia Tech from Gaithersburg, Maryland. I'm passionate about building intelligent systems that turn data into impact. My work spans AI/ML, full-stack development, and data engineering, where I enjoy creating tools that are both technically robust and user-friendly. I thrive in collaborative environments, love tackling complex problems with creativity and precision, and am always looking for new ways to push boundaries and grow.</p>
-        <div class="hero-grid">
-          <div>
-            <div class="card">
-              <h3>Technical Skills</h3>
-              <div class="skills">
-                <div class="skill-group">
-                  <h4>Languages</h4>
-                  <div class="skill-boxes">
-                    <span class="skill-box">Java</span>
-                    <span class="skill-box">Python</span>
-                    <span class="skill-box">C</span>
-                    <span class="skill-box">C++</span>
-                    <span class="skill-box">JavaScript</span>
-                    <span class="skill-box">HTML</span>
-                    <span class="skill-box">SQL</span>
-                  </div>
-                </div>
-                <div class="skill-group">
-                  <h4>Frameworks/Tools</h4>
-                  <div class="skill-boxes">
-                    <span class="skill-box">Flask</span>
-                    <span class="skill-box">WebSocket</span>
-                    <span class="skill-box">Node.js</span>
-                    <span class="skill-box">Express</span>
-                    <span class="skill-box">Firebase (Auth + Firestore)</span>
-                    <span class="skill-box">PostgreSQL</span>
-                    <span class="skill-box">scikit‑learn</span>
-                    <span class="skill-box">Pandas</span>
-                    <span class="skill-box">NumPy</span>
-                    <span class="skill-box">Matplotlib</span>
-                    <span class="skill-box">Seaborn</span>
-                    <span class="skill-box">TensorFlow</span>
-                    <span class="skill-box">PyTorch</span>
-                    <span class="skill-box">deck.gl</span>
-                    <span class="skill-box">D3.js</span>
-                    <span class="skill-box">ShadCN + Tailwind</span>
-                    <span class="skill-box">React + Vite</span>
-                    <span class="skill-box">Vertex AI</span>
-                  </div>
-                </div>
-                <div class="skill-group">
-                  <h4>ML and Data Science</h4>
-                  <div class="skill-boxes">
-                    <span class="skill-box">Logistic Regression</span>
-                    <span class="skill-box">Decision Trees</span>
-                    <span class="skill-box">Random Forest</span>
-                    <span class="skill-box">ARIMA</span>
-                    <span class="skill-box">LSTM</span>
-                    <span class="skill-box">Regression Scoring</span>
-                    <span class="skill-box">CNNs</span>
-                    <span class="skill-box">YOLOv5</span>
-                    <span class="skill-box">MiDaS (depth)</span>
-                    <span class="skill-box">BLIP (captioning)</span>
-                    <span class="skill-box">Multi‑threaded processing</span>
-                    <span class="skill-box">LoRA/QLoRA</span>
-                  </div>
-                </div>
+    <!-- PROJECTS -->
+    <section id="projects" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="sub">Work</div>
+          <h2>Projects</h2>
+        </div>
+
+        <!-- Featured -->
+        <div class="featured-project reveal">
+          <div class="featured-label">Featured Project</div>
+          <div class="featured-inner">
+            <div class="featured-content">
+              <h3>Research Paper RAG Platform</h3>
+              <p class="featured-desc">Production-grade RAG pipeline for querying academic papers — handles the full lifecycle from PDF ingestion to page-aware chunking, pgvector/HNSW semantic indexing, and structured answer synthesis with field-level citations via the Claude API.</p>
+              <div class="metric-pills">
+                <span class="metric-pill">HNSW Vector Index</span>
+                <span class="metric-pill">Recall@k / MRR Evaluated</span>
+                <span class="metric-pill">Pydantic + Field Citations</span>
+                <span class="metric-pill">Docker Compose Full Stack</span>
+              </div>
+              <div class="featured-stack">
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">pgvector</span>
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">Docker Compose</span>
+                <span class="tech-tag">Claude API</span>
+                <span class="tech-tag">Pydantic</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <a class="btn" href="https://github.com/AayushP-418/research-paper-RAG" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+            <div class="featured-arch">
+              <div class="arch-diagram">
+                <div class="arch-node">PDF Ingestion</div>
+                <div class="arch-connector"></div>
+                <div class="arch-node">Page-Aware Chunking</div>
+                <div class="arch-connector"></div>
+                <div class="arch-node arch-highlight">pgvector / HNSW Index</div>
+                <div class="arch-connector"></div>
+                <div class="arch-node">Semantic Retrieval</div>
+                <div class="arch-connector"></div>
+                <div class="arch-node">Claude API Synthesis</div>
+                <div class="arch-connector"></div>
+                <div class="arch-node arch-output">Pydantic Response + Citations</div>
               </div>
             </div>
           </div>
-          <aside class="card resume-card">
-            <h3>Resume</h3>
-            <div class="hint">View or download my latest resume.</div>
-            <div class="nav-actions">
-              <a class="btn" href="resume.html">View Inline</a>
-              <a class="btn primary" href="assets/resume/Aayush_Patel_Resume.pdf" download>Download PDF</a>
+        </div>
+
+        <!-- Grid -->
+        <div class="projects-grid">
+
+          <article class="project-card reveal">
+            <div class="pc-top">
+              <h3>Vitalis — AI Health Assistant</h3>
+              <a class="btn btn-sm" href="https://github.com/AayushP-418/Vitalis-Med-Assistant" target="_blank" rel="noopener">Code</a>
             </div>
-          </aside>
-        </div>
-      </section>
+            <p>Agentic Gemini tool-use pipeline for multi-step document parsing, retrieval, and health synthesis. ChromaDB as persistent agent memory with cosine similarity retrieval and JSON schema output constraints.</p>
+            <div class="pc-metric"><span class="metric-chip">+31% structured retrieval precision</span></div>
+            <div class="chips">
+              <span class="chip">Gemini API</span><span class="chip">ChromaDB</span><span class="chip">FastAPI</span><span class="chip">JSON Schema</span><span class="chip">Tool Use</span>
+            </div>
+          </article>
 
-      <section>
-        <div class="sub">Academics</div>
-        <h2>Relevant Coursework</h2>
-        <div class="chips">
-          <span class="chip">Data Structures and Algorithms</span>
-          <span class="chip">Objects and Design</span>
-          <span class="chip">Computer Organization and Programming</span>
-          <span class="chip">Object‑Oriented Programming</span>
-        </div>
-        <hr class="section-divider">
-      </section>
-    </main>
+          <article class="project-card reveal">
+            <div class="pc-top">
+              <h3>TerraTrends — Economic Forecasting</h3>
+              <a class="btn btn-sm" href="https://github.com/AayushP-418/TerraTrends" target="_blank" rel="noopener">Code</a>
+            </div>
+            <p>LSTM/ARIMA ensemble on county-level economic features from 15+ automated GCP data sources. Interactive deck.gl geospatial dashboard for small business and investor use.</p>
+            <div class="pc-metric"><span class="metric-chip">15+ data sources · GCP ETL pipeline</span></div>
+            <div class="chips">
+              <span class="chip">LSTM</span><span class="chip">ARIMA</span><span class="chip">GCP</span><span class="chip">deck.gl</span><span class="chip">Flask</span><span class="chip">scikit-learn</span>
+            </div>
+          </article>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="muted">© <span id="year"></span> Aayush Patel</div>
-        <div class="socials">
-          <a href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/AayushP-418" target="_blank" rel="noopener">GitHub</a>
-          <a href="mailto:apatel3088@gatech.edu">Email</a>
+          <article class="project-card reveal">
+            <div class="pc-top">
+              <h3>Flight Delay Prediction</h3>
+              <a class="btn btn-sm" href="https://github.com/gt-big-data/flight-delay-prediction" target="_blank" rel="noopener">Code</a>
+            </div>
+            <p>CNN/RF/XGBoost/MLP ensemble on 6M+ flight-weather records. Applied RFE on weather-derived features; improved precision by 14%; deployed via Dockerized Flask API.</p>
+            <div class="pc-metric"><span class="metric-chip">92% accuracy · AUC 0.94 · 6M+ rows</span></div>
+            <div class="chips">
+              <span class="chip">XGBoost</span><span class="chip">Random Forest</span><span class="chip">CNN</span><span class="chip">scikit-learn</span><span class="chip">Docker</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="pc-top">
+              <h3>ThirdEye — Assistive Vision System</h3>
+              <a class="btn btn-sm" href="https://github.com/Hackalytics-2025/ThirdEye" target="_blank" rel="noopener">Code</a>
+            </div>
+            <p>AI wearable combining YOLOv5, MiDaS depth, OCR, and emotion recognition for real-time accessibility. EyeReplace Chrome extension with eye-tracking for dynamic on-screen word simplification.</p>
+            <div class="pc-metric"><span class="metric-chip">HackGT 11 · Hackalytics 2025</span></div>
+            <div class="chips">
+              <span class="chip">YOLOv5</span><span class="chip">MiDaS</span><span class="chip">Gemini API</span><span class="chip">Flask</span><span class="chip">WebSockets</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="pc-top">
+              <h3>Technical Interview Platform</h3>
+              <span class="wip-badge">In Progress</span>
+            </div>
+            <p>Full-stack platform for technical interviews: real-time multi-language coding environment, Firebase auth/sessions, and anti-cheat proctoring via WebSocket event analytics.</p>
+            <div class="chips">
+              <span class="chip">React / Vite / Tailwind</span><span class="chip">Firebase</span><span class="chip">Judge0 API</span><span class="chip">Monaco Editor</span><span class="chip">WebSockets</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="pc-top">
+              <h3>Job Search Portal</h3>
+              <a class="btn btn-sm" href="https://github.com/AayushP-418/Job-Search-Portal" target="_blank" rel="noopener">Code</a>
+            </div>
+            <p>CS 2340 capstone — full-stack job search app built with Agile/Scrum methodology, clean OOP architecture, and Spring Boot backend with role-based access control.</p>
+            <div class="chips">
+              <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">OOP</span><span class="chip">Agile / Scrum</span>
+            </div>
+          </article>
+
         </div>
       </div>
-    </footer>
+    </section>
 
-    <script src="assets/js/main.js"></script>
-  </body>
-  </html>
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="sub">Career</div>
+          <h2>Experience</h2>
+        </div>
+        <div class="timeline">
 
+          <div class="timeline-item reveal">
+            <div class="tl-marker">
+              <div class="tl-dot tl-dot-pulse"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+              <span class="tl-date">May 2026 – Aug 2026</span>
+              <h3>Teaching Assistant — CS 2340: Objects &amp; Design</h3>
+              <span class="tl-org">Georgia Institute of Technology · Atlanta, GA</span>
+              <ul>
+                <li>Developing OOP, design-pattern, and Agile/Scrum materials for 200+ students across multiple sections</li>
+                <li>Facilitating office hours and technical presentations on project architecture and iterative code review</li>
+                <li>Recognized by faculty for documenting software design trade-offs across students of varied backgrounds</li>
+              </ul>
+              <div class="chips"><span class="chip">OOP</span><span class="chip">Design Patterns</span><span class="chip">Agile/Scrum</span><span class="chip">Java</span></div>
+            </div>
+          </div>
 
+          <div class="timeline-item reveal">
+            <div class="tl-marker">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+              <span class="tl-date">Jan 2026 – Present</span>
+              <h3>Director of Projects</h3>
+              <span class="tl-org">Big Data Big Impact @ Georgia Tech · Atlanta, GA</span>
+              <ul>
+                <li>Leading 11 AI/ML project teams (100+ students) across NLP, forecasting, and computer-vision domains</li>
+                <li>Set uniform model-evaluation standards: precision/recall dashboards, confusion matrices, stratified CV, AUC</li>
+                <li>Drove 6 projects to deployment; presented results to GT College of Computing Advisory Board and a Microsoft panel</li>
+              </ul>
+              <div class="chips"><span class="chip">Technical Leadership</span><span class="chip">NLP</span><span class="chip">Computer Vision</span><span class="chip">ML Evaluation</span></div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-marker">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div class="tl-card">
+              <span class="tl-date">Aug 2025 – May 2026</span>
+              <h3>Undergraduate Researcher — Evolutionary AutoML &amp; LLM-Guided Synthesis</h3>
+              <span class="tl-org">GT VIP · EMADE Lab (Advisor: Dr. Jason Zutty) · Atlanta, GA</span>
+              <ul>
+                <li>Designed LLM-as-mutation-operator framework integrating Gemma, Qwen, Gemini, and DeepSeek-R1 in the <code>deap</code> framework</li>
+                <li>Improved synthesis solution quality by 14% on TSP and symbolic regression over human-engineered baselines</li>
+                <li>Engineered island-migration scheduler for parallel evolution — 5.8× convergence speedup</li>
+              </ul>
+              <div class="chips"><span class="chip">PyTorch</span><span class="chip">Evolutionary ML</span><span class="chip">LLM APIs</span><span class="chip">deap</span><span class="chip">AutoML</span></div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-marker">
+              <div class="tl-dot"></div>
+              <div class="tl-line tl-line-none"></div>
+            </div>
+            <div class="tl-card">
+              <span class="tl-date">May 2025 – Aug 2025</span>
+              <h3>Data Engineering Intern</h3>
+              <span class="tl-org">Mascot Forge Pvt Ltd · India</span>
+              <ul>
+                <li>Built gradient-boosted demand-forecasting model on production records; adopted by operations, cutting reporting latency by 1.3 hrs</li>
+                <li>Built PostgreSQL analytics dashboards and translated model findings into executive-level ROI presentations</li>
+              </ul>
+              <div class="chips"><span class="chip">scikit-learn</span><span class="chip">PostgreSQL</span><span class="chip">Pandas</span><span class="chip">Data Pipelines</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="sub">Research</div>
+          <h2>Evolutionary AutoML</h2>
+        </div>
+        <div class="research-card reveal">
+          <div class="research-top">
+            <div>
+              <h3>LLM-Guided Synthesis in Evolutionary AutoML</h3>
+              <div class="meta">EMADE Lab, Georgia Institute of Technology · Aug 2025 – May 2026</div>
+            </div>
+            <a class="btn" href="https://github.gatech.edu/emade/emade/wiki/Automated-Algorithm-Design" target="_blank" rel="noopener">Lab Wiki</a>
+          </div>
+          <p>Working under Dr. Jason Zutty, I designed a framework where large language models act as mutation operators within a genetic algorithm — replacing hand-crafted heuristics with LLM-generated program transformations. Integrated Gemma, Qwen, Gemini, and DeepSeek-R1 into the <code>deap</code> evolutionary framework for TSP and symbolic regression benchmarks.</p>
+          <div class="research-stats">
+            <div class="rstat">
+              <span class="rstat-num">14%</span>
+              <span class="rstat-label">Quality improvement over human-engineered baselines (TSP + symbolic regression)</span>
+            </div>
+            <div class="rstat">
+              <span class="rstat-num">5.8×</span>
+              <span class="rstat-label">Convergence speedup via island-migration scheduler for parallel evolution</span>
+            </div>
+          </div>
+          <div class="chips">
+            <span class="chip">Evolutionary Algorithms</span><span class="chip">LLM Integration</span><span class="chip">deap</span><span class="chip">Gemini / DeepSeek-R1 / Gemma / Qwen</span><span class="chip">Symbolic Regression</span><span class="chip">TSP</span><span class="chip">Python</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="sub">Capabilities</div>
+          <h2>Technical Skills</h2>
+        </div>
+
+        <div class="skills-trio">
+          <div class="skill-col reveal">
+            <h4>AI &amp; ML Systems</h4>
+            <div class="skill-bars">
+              <div class="sk-row"><span class="sk-label">RAG / Vector Search</span><div class="sk-bar"><div class="sk-fill" style="--pct:92%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">LLM API Integration</span><div class="sk-bar"><div class="sk-fill" style="--pct:90%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">PyTorch / scikit-learn</span><div class="sk-bar"><div class="sk-fill" style="--pct:88%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">LSTM / ARIMA / XGBoost</span><div class="sk-bar"><div class="sk-fill" style="--pct:83%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">Prompt Engineering</span><div class="sk-bar"><div class="sk-fill" style="--pct:85%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">Evolutionary Algorithms</span><div class="sk-bar"><div class="sk-fill" style="--pct:76%"></div></div></div>
+            </div>
+          </div>
+          <div class="skill-col reveal">
+            <h4>Languages</h4>
+            <div class="skill-bars">
+              <div class="sk-row"><span class="sk-label">Python</span><div class="sk-bar"><div class="sk-fill" style="--pct:95%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">SQL</span><div class="sk-bar"><div class="sk-fill" style="--pct:88%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">JavaScript / TypeScript</span><div class="sk-bar"><div class="sk-fill" style="--pct:82%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">Java</span><div class="sk-bar"><div class="sk-fill" style="--pct:80%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">C / C++</span><div class="sk-bar"><div class="sk-fill" style="--pct:70%"></div></div></div>
+            </div>
+          </div>
+          <div class="skill-col reveal">
+            <h4>Infrastructure &amp; Tools</h4>
+            <div class="skill-bars">
+              <div class="sk-row"><span class="sk-label">FastAPI / Flask</span><div class="sk-bar"><div class="sk-fill" style="--pct:90%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">PostgreSQL / pgvector</span><div class="sk-bar"><div class="sk-fill" style="--pct:88%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">Docker / Compose</span><div class="sk-bar"><div class="sk-fill" style="--pct:85%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">GCP / Vertex AI</span><div class="sk-bar"><div class="sk-fill" style="--pct:80%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">Next.js / React</span><div class="sk-bar"><div class="sk-fill" style="--pct:78%"></div></div></div>
+              <div class="sk-row"><span class="sk-label">CI/CD (GitHub Actions)</span><div class="sk-bar"><div class="sk-fill" style="--pct:75%"></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu-block reveal">
+          <div class="edu-info">
+            <div class="edu-school">Georgia Institute of Technology</div>
+            <div class="edu-degree">B.S. Computer Science — Intelligence &amp; Systems Architecture · Minor: FinTech</div>
+            <div class="chips" style="margin-top:10px">
+              <span class="chip">Machine Learning</span>
+              <span class="chip">Artificial Intelligence</span>
+              <span class="chip">Advanced Data Structures &amp; Algorithms</span>
+              <span class="chip">Objects &amp; Design</span>
+              <span class="chip">Computer Organization &amp; Programming</span>
+            </div>
+          </div>
+          <div class="edu-badge">
+            <span class="gpa-num">3.71</span>
+            <span class="gpa-den">/ 4.00</span>
+            <span class="grad-yr">Expected May 2028</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="sub">Say Hello</div>
+          <h2>Get In Touch</h2>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-info reveal">
+            <p>Open to internships, research collaborations, and impactful projects. The fastest way to reach me is by email.</p>
+            <div class="contact-links">
+              <a class="contact-link" href="mailto:apatel3088@gatech.edu">
+                <span class="cl-icon">✉</span>apatel3088@gatech.edu
+              </a>
+              <a class="contact-link" href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">
+                <span class="cl-icon">in</span>linkedin.com/in/aysh-ptl
+              </a>
+              <a class="contact-link" href="https://github.com/AayushP-418" target="_blank" rel="noopener">
+                <span class="cl-icon">gh</span>github.com/AayushP-418
+              </a>
+            </div>
+          </div>
+          <div class="card contact-form-wrap reveal">
+            <h3>Send a Message</h3>
+            <form id="contactForm">
+              <div class="field">
+                <label for="c-name">Your name</label>
+                <input id="c-name" name="name" type="text" placeholder="Jane Doe" required>
+              </div>
+              <div class="field">
+                <label for="c-subject">Subject</label>
+                <input id="c-subject" name="subject" type="text" placeholder="Opportunity at..." required>
+              </div>
+              <div class="field">
+                <label for="c-message">Message</label>
+                <textarea id="c-message" name="message" placeholder="Hi Aayush, ..." required></textarea>
+              </div>
+              <button class="btn primary" type="submit">Open in Email</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">© <span id="year"></span> Aayush Patel</div>
+      <div class="socials">
+        <a href="https://linkedin.com/in/aysh-ptl" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/AayushP-418" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:apatel3088@gatech.edu">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
