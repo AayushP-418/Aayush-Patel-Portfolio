@@ -153,7 +153,7 @@
       });
     }
 
-    /* ── Scrollspy ─────────────────────────── */
+    /* ── Scrollspy + nav pill ──────────────── */
     var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
     var sections = [];
     navLinks.forEach(function (a) {
@@ -161,6 +161,34 @@
       var sec = document.getElementById(id);
       if (sec) sections.push({ el: sec, link: a });
     });
+
+    /* Inject sliding pill on desktop */
+    var navPill = null;
+    (function () {
+      if (window.innerWidth <= 720) return;
+      var nav = document.getElementById('primaryNav');
+      if (!nav) return;
+      navPill = document.createElement('span');
+      navPill.className = 'nav-pill';
+      nav.appendChild(navPill);
+    })();
+
+    function movePill() {
+      if (!navPill) return;
+      var nav    = document.getElementById('primaryNav');
+      var active = nav && nav.querySelector('a.active');
+      if (!active) return;
+      var nr = nav.getBoundingClientRect();
+      var lr = active.getBoundingClientRect();
+      navPill.style.left   = (lr.left   - nr.left) + 'px';
+      navPill.style.top    = (lr.top    - nr.top)  + 'px';
+      navPill.style.width  = lr.width  + 'px';
+      navPill.style.height = lr.height + 'px';
+      if (!navPill.classList.contains('ready')) {
+        navPill.offsetHeight; // force reflow so first position skips transition
+        navPill.classList.add('ready');
+      }
+    }
 
     function updateActive() {
       var scrollY = window.scrollY || window.pageYOffset;
@@ -172,6 +200,7 @@
       sections.forEach(function (s) {
         s.link.classList.toggle('active', s === active);
       });
+      movePill();
     }
     window.addEventListener('scroll', updateActive, { passive: true });
     updateActive();
@@ -327,6 +356,11 @@
         });
       });
     })();
+
+    /* ── Stagger project card delays ──────── */
+    document.querySelectorAll('.project-card').forEach(function (card, i) {
+      card.style.setProperty('--stagger-delay', (i * 60) + 'ms');
+    });
 
     /* ── Hero canvas particle graph ────────── */
     initHeroCanvas();
