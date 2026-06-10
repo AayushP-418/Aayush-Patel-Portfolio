@@ -118,19 +118,28 @@
               <a class="btn" href="https://github.com/AayushP-418/research-paper-RAG" target="_blank" rel="noopener">View on GitHub</a>
             </div>
             <div class="featured-arch">
-              <div class="arch-diagram">
-                <div class="arch-node">PDF Ingestion</div>
+              <div class="arch-diagram" id="arch-diagram">
+                <div class="arch-node" data-step="0">PDF Ingestion</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node">Page-Aware Chunking</div>
+                <div class="arch-node" data-step="1">Page-Aware Chunking</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node arch-highlight">pgvector / HNSW Index</div>
+                <div class="arch-node arch-highlight" data-step="2">pgvector / HNSW Index</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node">Semantic Retrieval</div>
+                <div class="arch-node" data-step="3">Semantic Retrieval</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node">Claude API Synthesis</div>
+                <div class="arch-node" data-step="4">Claude API Synthesis</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node arch-output">Pydantic Response + Citations</div>
+                <div class="arch-node arch-output" data-step="5">Pydantic Response + Citations</div>
               </div>
+              <div class="arch-wt-panel" id="arch-wt-panel">
+                <p class="arch-wt-desc" id="arch-wt-desc"></p>
+                <div class="arch-wt-nav">
+                  <button class="arch-nav-btn" id="arch-wt-prev">&#8592; Prev</button>
+                  <span class="arch-wt-counter" id="arch-wt-counter"></span>
+                  <button class="arch-nav-btn" id="arch-wt-next">Next &#8594;</button>
+                </div>
+              </div>
+              <button class="arch-wt-trigger" id="arch-wt-trigger">&#9654; Walkthrough</button>
             </div>
           </div>
         </div>
