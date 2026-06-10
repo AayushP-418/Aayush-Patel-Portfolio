@@ -493,6 +493,29 @@ p:last-child { margin-bottom: 0; }
 .arch-wt-trigger.exit { border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.07); color: #f87171; }
 
 /* ─────────────────────────────────────────────
+   Filter Tabs
+───────────────────────────────────────────── */
+.filter-tabs {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 28px 0 22px;
+}
+.filter-tab {
+  font-family: var(--font-head); font-size: 13px; font-weight: 500;
+  padding: 7px 16px; border-radius: 999px;
+  border: 1px solid var(--border); background: transparent; color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.filter-tab:hover {
+  color: var(--text); border-color: rgba(129,140,248,0.3);
+  background: rgba(129,140,248,0.06); transform: translateY(-1px);
+}
+.filter-tab.active {
+  background: rgba(129,140,248,0.15); border-color: rgba(129,140,248,0.45);
+  color: var(--primary); font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────
    Projects Grid
 ───────────────────────────────────────────── */
 .projects-grid {
@@ -502,7 +525,12 @@ p:last-child { margin-bottom: 0; }
   background: var(--card-bg);
   border: 1px solid var(--border); border-radius: var(--radius);
   padding: 20px; display: flex; flex-direction: column; gap: 10px;
-  transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+  transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s, opacity 0.25s ease;
+}
+.project-card.filter-out {
+  opacity: 0 !important;
+  transform: scale(0.96) translateY(6px) !important;
+  pointer-events: none;
 }
 .project-card:hover {
   transform: translateY(-4px);
