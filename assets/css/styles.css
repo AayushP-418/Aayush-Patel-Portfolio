@@ -124,7 +124,13 @@ p:last-child { margin-bottom: 0; }
   .status-dot        { animation: none; }
   .tl-dot-pulse      { animation: none; }
   .sk-fill           { transition: none; }
+  .tl-dot            { transition: none; transform: scale(1); }
+  .timeline-item.revealed .tl-dot { transform: scale(1); }
 }
+
+/* Section headers slide in from the left slightly */
+.section-header.reveal         { transform: translateX(-14px) translateY(18px); }
+.section-header.reveal.revealed { transform: translateX(0) translateY(0); }
 
 /* ─────────────────────────────────────────────
    Nav / Header
@@ -576,7 +582,10 @@ p:last-child { margin-bottom: 0; }
   border: 3px solid var(--bg);
   box-shadow: 0 0 0 2px rgba(129,140,248,0.4);
   flex-shrink: 0; position: relative; z-index: 1;
+  transform: scale(0);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.18s;
 }
+.timeline-item.revealed .tl-dot { transform: scale(1); }
 .tl-dot-pulse { animation: tl-pulse 2.5s ease infinite; }
 @keyframes tl-pulse {
   0%, 100% { box-shadow: 0 0 0 2px rgba(129,140,248,0.4); }
@@ -797,6 +806,35 @@ p:last-child { margin-bottom: 0; }
 
 /* Typed cursor */
 .typed-cursor { color: var(--accent) !important; }
+
+/* ─────────────────────────────────────────────
+   Phase 8 — Polish & micro-interactions
+───────────────────────────────────────────── */
+
+/* Staggered project card reveal */
+.project-card.reveal {
+  transition-delay: var(--stagger-delay, 0ms);
+}
+
+/* Nav sliding pill — desktop only */
+@media (min-width: 721px) {
+  .nav-links { position: relative; }
+  .nav-links a.active { background: transparent; }
+  .nav-pill {
+    position: absolute;
+    background: rgba(129,140,248,0.15);
+    border-radius: var(--radius-sm);
+    pointer-events: none; z-index: 0;
+    opacity: 0;
+    transition: left   0.26s cubic-bezier(0.4, 0, 0.2, 1),
+                top    0.26s cubic-bezier(0.4, 0, 0.2, 1),
+                width  0.26s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.15s;
+  }
+  .nav-pill.ready { opacity: 1; }
+  .nav-links a { position: relative; z-index: 1; }
+}
 
 /* ─────────────────────────────────────────────
    Chat Widget
