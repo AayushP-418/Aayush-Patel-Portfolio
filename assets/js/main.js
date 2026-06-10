@@ -204,6 +204,85 @@
       });
     }
 
+    /* ── RAG pipeline walkthrough ─────────── */
+    (function initWalkthrough() {
+      var diagram  = document.getElementById('arch-diagram');
+      var panel    = document.getElementById('arch-wt-panel');
+      var descEl   = document.getElementById('arch-wt-desc');
+      var counter  = document.getElementById('arch-wt-counter');
+      var trigger  = document.getElementById('arch-wt-trigger');
+      var prevBtn  = document.getElementById('arch-wt-prev');
+      var nextBtn  = document.getElementById('arch-wt-next');
+      if (!diagram || !panel) return;
+
+      var nodes      = Array.from(diagram.querySelectorAll('.arch-node[data-step]'));
+      var connectors = Array.from(diagram.querySelectorAll('.arch-connector'));
+
+      var steps = [
+        { desc: 'Parses academic PDFs with layout analysis — preserves page structure, figures, and section boundaries for downstream citation tracking.' },
+        { desc: 'Splits text into overlapping token-bounded chunks tagged with page numbers, enabling precise citations that link answers back to their source pages.' },
+        { desc: 'Encodes chunks as dense vectors and stores them in PostgreSQL with an HNSW approximate nearest-neighbor index — sub-50ms retrieval at scale.' },
+        { desc: 'Queries the HNSW index for top-k chunks by cosine similarity, then re-ranks with BM25 + MMR to balance relevance with answer diversity.' },
+        { desc: 'Constructs a context-stuffed prompt from retrieved chunks and sends it to Claude, which produces structured answers with field-level source attribution.' },
+        { desc: 'Validates the structured output schema via Pydantic and returns typed JSON — each answer field linked to the specific paper and page it came from.' }
+      ];
+
+      var active  = false;
+      var current = 0;
+
+      function goTo(idx) {
+        current = idx;
+        nodes.forEach(function (n, i) {
+          n.classList.remove('arch-active', 'arch-done');
+          if (i === idx) n.classList.add('arch-active');
+          else if (i < idx) n.classList.add('arch-done');
+        });
+        connectors.forEach(function (c, i) {
+          c.classList.toggle('arch-done', i < idx);
+        });
+        descEl.textContent = steps[idx].desc;
+        counter.textContent = (idx + 1) + ' / ' + steps.length;
+        prevBtn.disabled = idx === 0;
+        nextBtn.textContent = idx === steps.length - 1 ? 'Done ✓' : 'Next →';
+        nextBtn.disabled = false;
+      }
+
+      function start(idx) {
+        active = true;
+        trigger.textContent = '✕ Exit';
+        trigger.classList.add('exit');
+        panel.classList.add('active');
+        goTo(idx || 0);
+      }
+
+      function exit() {
+        active = false;
+        trigger.textContent = '▶ Walkthrough';
+        trigger.classList.remove('exit');
+        panel.classList.remove('active');
+        nodes.forEach(function (n) { n.classList.remove('arch-active', 'arch-done'); });
+        connectors.forEach(function (c) { c.classList.remove('arch-done'); });
+      }
+
+      trigger.addEventListener('click', function () {
+        if (active) exit(); else start(0);
+      });
+
+      prevBtn.addEventListener('click', function () {
+        if (current > 0) goTo(current - 1);
+      });
+
+      nextBtn.addEventListener('click', function () {
+        if (current < steps.length - 1) goTo(current + 1); else exit();
+      });
+
+      nodes.forEach(function (n, i) {
+        n.addEventListener('click', function () {
+          if (!active) start(i); else goTo(i);
+        });
+      });
+    })();
+
     /* ── Hero canvas particle graph ────────── */
     initHeroCanvas();
 
