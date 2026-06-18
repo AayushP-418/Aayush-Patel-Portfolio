@@ -209,6 +209,30 @@
         <!-- Grid -->
         <div class="projects-grid" id="projects-grid">
 
+          <article class="project-card reveal" data-cat="ai-ml research">
+            <div class="pc-top">
+              <h3>FinLoRA — Financial LLM Fine-Tuning</h3>
+              <a class="btn btn-sm" href="https://github.com/AayushP-418/Finlora" target="_blank" rel="noopener">Code</a>
+            </div>
+            <p>Fine-tuned Phi-3.5-mini (3.8B) on 34,799 SEC 10-K examples via QLoRA SFT + DPO preference alignment. Serves citation-backed financial QA with a FastAPI/vLLM stack; evaluated against FinQA benchmark.</p>
+            <div class="pc-metric"><span class="metric-chip">ROUGE-1 +88% · BERTScore F1 +8.7pp · Exact Match +16.4pp</span></div>
+            <div class="chips">
+              <span class="chip">Phi-3.5-mini</span><span class="chip">QLoRA</span><span class="chip">DPO</span><span class="chip">vLLM</span><span class="chip">FastAPI</span><span class="chip">Hugging Face</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-cat="ai-ml research">
+            <div class="pc-top">
+              <h3>RL Trading Agent — Portfolio Optimizer</h3>
+              <a class="btn btn-sm" href="https://github.com/AayushP-418/RL-Trading-Agent" target="_blank" rel="noopener">Code</a>
+            </div>
+            <p>PPO agent (Stable Baselines3) trading 10 diversified ETFs across a 109-dim observation space with HMM regime probabilities and realistic transaction costs. Validated via expanding walk-forward over 15 windows (2017–2024).</p>
+            <div class="pc-metric"><span class="metric-chip">Sharpe 0.508 · +12.2% alpha (p=0.013) · CAGR 10.6%</span></div>
+            <div class="chips">
+              <span class="chip">PPO</span><span class="chip">Stable Baselines3</span><span class="chip">Gymnasium</span><span class="chip">HMM</span><span class="chip">FastAPI</span><span class="chip">Plotly</span>
+            </div>
+          </article>
+
           <article class="project-card reveal" data-cat="ai-ml">
             <div class="pc-top">
               <h3>Vitalis — AI Health Assistant</h3>
