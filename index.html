@@ -151,38 +151,38 @@
           <div class="featured-label">Featured Project</div>
           <div class="featured-inner">
             <div class="featured-content">
-              <h3>Research Paper RAG Platform</h3>
-              <p class="featured-desc">Production-grade RAG pipeline for querying academic papers — handles the full lifecycle from PDF ingestion to page-aware chunking, pgvector/HNSW semantic indexing, and structured answer synthesis with field-level citations via the Claude API.</p>
+              <h3>FinLoRA — Financial LLM Fine-Tuning</h3>
+              <p class="featured-desc">Fine-tuned Microsoft's Phi-3.5-mini (3.8B) on 34,799 domain-specific examples from 125 SEC 10-K filings and the FinQA benchmark via QLoRA SFT + DPO preference alignment. Serves citation-backed financial QA with a FastAPI/vLLM production stack.</p>
               <div class="metric-pills">
-                <span class="metric-pill">HNSW Vector Index</span>
-                <span class="metric-pill">Recall@k / MRR Evaluated</span>
-                <span class="metric-pill">Pydantic + Field Citations</span>
-                <span class="metric-pill">Docker Compose Full Stack</span>
+                <span class="metric-pill">ROUGE-1 +88% (0.34 → 0.64)</span>
+                <span class="metric-pill">BERTScore F1 +8.7pp</span>
+                <span class="metric-pill">Exact Match +16.4pp</span>
+                <span class="metric-pill">34,799 Training Examples</span>
               </div>
               <div class="featured-stack">
+                <span class="tech-tag">Phi-3.5-mini</span>
+                <span class="tech-tag">QLoRA</span>
+                <span class="tech-tag">DPO / TRL</span>
+                <span class="tech-tag">vLLM</span>
                 <span class="tech-tag">FastAPI</span>
-                <span class="tech-tag">pgvector</span>
-                <span class="tech-tag">Next.js</span>
-                <span class="tech-tag">Docker Compose</span>
-                <span class="tech-tag">Claude API</span>
-                <span class="tech-tag">Pydantic</span>
-                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Hugging Face</span>
+                <span class="tech-tag">bitsandbytes</span>
               </div>
-              <a class="btn" href="https://github.com/AayushP-418/research-paper-RAG" target="_blank" rel="noopener">View on GitHub</a>
+              <a class="btn" href="https://github.com/AayushP-418/Finlora" target="_blank" rel="noopener">View on GitHub</a>
             </div>
             <div class="featured-arch">
               <div class="arch-diagram" id="arch-diagram">
-                <div class="arch-node" data-step="0">PDF Ingestion</div>
+                <div class="arch-node" data-step="0">Data Collection</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node" data-step="1">Page-Aware Chunking</div>
+                <div class="arch-node" data-step="1">QLoRA SFT</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node arch-highlight" data-step="2">pgvector / HNSW Index</div>
+                <div class="arch-node arch-highlight" data-step="2">DPO Alignment</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node" data-step="3">Semantic Retrieval</div>
+                <div class="arch-node" data-step="3">vLLM Serving</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node" data-step="4">Claude API Synthesis</div>
+                <div class="arch-node" data-step="4">FastAPI Endpoint</div>
                 <div class="arch-connector"></div>
-                <div class="arch-node arch-output" data-step="5">Pydantic Response + Citations</div>
+                <div class="arch-node arch-output" data-step="5">Citation-Backed Answer</div>
               </div>
               <div class="arch-wt-panel" id="arch-wt-panel">
                 <p class="arch-wt-desc" id="arch-wt-desc"></p>

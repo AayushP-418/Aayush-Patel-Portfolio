@@ -45,13 +45,13 @@
         {
           cmd: 'cat current_focus.txt',
           output: [
-            'Building production RAG systems. Teaching 200+ students.',
-            'Leading 11 ML teams. Researching evolutionary AutoML.'
+            'Fine-tuning LLMs · building RL trading agents · shipping RAG systems.',
+            'Leading 11 ML teams. Researching evolutionary AutoML @ EMADE.'
           ]
         },
         {
           cmd: 'ls projects/',
-          output: ['research-paper-rag/  vitalis/  terratrends/  flight-delay/']
+          output: ['finlora/  rl-trading/  research-paper-rag/  vitalis/  terratrends/']
         }
       ];
 
@@ -293,12 +293,12 @@
       var connectors = Array.from(diagram.querySelectorAll('.arch-connector'));
 
       var steps = [
-        { desc: 'Parses academic PDFs with layout analysis — preserves page structure, figures, and section boundaries for downstream citation tracking.' },
-        { desc: 'Splits text into overlapping token-bounded chunks tagged with page numbers, enabling precise citations that link answers back to their source pages.' },
-        { desc: 'Encodes chunks as dense vectors and stores them in PostgreSQL with an HNSW approximate nearest-neighbor index — sub-50ms retrieval at scale.' },
-        { desc: 'Queries the HNSW index for top-k chunks by cosine similarity, then re-ranks with BM25 + MMR to balance relevance with answer diversity.' },
-        { desc: 'Constructs a context-stuffed prompt from retrieved chunks and sends it to Claude, which produces structured answers with field-level source attribution.' },
-        { desc: 'Validates the structured output schema via Pydantic and returns typed JSON — each answer field linked to the specific paper and page it came from.' }
+        { desc: 'Aggregates 34,799 domain-specific QA pairs from 125 EDGAR annual reports and the FinQA benchmark — covering numerical reasoning, ratio calculations, and open-ended questions across SEC 10-K filings.' },
+        { desc: 'Applies QLoRA (4-bit NF4 quantization + rank-16 LoRA adapters) to fine-tune Phi-3.5-mini-instruct, drastically reducing GPU memory footprint while matching full fine-tune quality on financial reasoning tasks.' },
+        { desc: 'Runs DPO preference alignment on ranked response pairs, training the model to prefer grounded, numerically accurate answers over hallucinated or unattributed ones — the DPO v3 adapter improves citation quality.' },
+        { desc: 'Serves the fine-tuned adapter with vLLM for GPU-accelerated batched inference; supports hot-swapping between the SFT v2 and DPO v3 adapters for side-by-side evaluation.' },
+        { desc: 'FastAPI layer validates requests, injects system context, and formats model outputs with [SOURCE: ...] citation tags traceable back to specific 10-K sections and EDGAR filing IDs.' },
+        { desc: 'Structured answers grounded in source documents: ROUGE-1 improved 0.34 → 0.64, BERTScore F1 up 8.7pp, and numerical exact-match jumped +16.4 percentage points over the base Phi-3.5-mini.' }
       ];
 
       var active  = false;
