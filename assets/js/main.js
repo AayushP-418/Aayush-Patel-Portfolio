@@ -51,7 +51,7 @@
         },
         {
           cmd: 'ls projects/',
-          output: ['finlora/  rl-trading/  research-paper-rag/  vitalis/  terratrends/']
+          output: ['finlora/  rl-trading/  gatekeeper/  research-paper-rag/  vitalis/']
         }
       ];
 
@@ -119,7 +119,8 @@
     var statuses = [
       'Directing 11 AI/ML teams at Georgia Tech',
       'Teaching 200+ students CS 2340: Objects & Design',
-      'Building production RAG systems with pgvector + Claude API',
+      'Fine-tuning LLMs and building RL agents for financial markets',
+      'Building distributed systems with Redis, gRPC, and circuit breakers',
       'Researching evolutionary AutoML at the EMADE Lab'
     ];
     var statusEl = document.getElementById('status-text');
