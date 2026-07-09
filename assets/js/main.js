@@ -51,7 +51,7 @@
         },
         {
           cmd: 'ls projects/',
-          output: ['finlora/  rl-trading/  gatekeeper/  research-paper-rag/  vitalis/']
+          output: ['finlora/  rl-trading/  gatekeeper/  feature-flag/  research-paper-rag/']
         }
       ];
 
